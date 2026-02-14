@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Core Engine | Java Mobile Development</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --accent: #f89820; /* Java Orange */
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--bg);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Анімований фон з лініями коду */
+        .bg-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
+            opacity: 0.5;
+        }
+
+        /* Головний екран */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-badge {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 12vw, 7rem);
+            font-weight: 900;
+            background: linear-gradient(to bottom, #fff 30%, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        /* Кнопка Early Test */
+        .btn-main {
+            position: relative;
+            padding: 20px 60px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            background: transparent;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.4s;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        .btn-main:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 50px var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* Модальне вікно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-box {
+            background: linear-gradient(145deg, #0f0f15, #050505);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            padding: 50px;
+            max-width: 700px;
+            border-radius: 5px;
+            position: relative;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .modal-box h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 2rem;
+            border-bottom: 1px solid var(--glass);
+            padding-bottom: 10px;
+        }
+
+        .modal-box p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .java-text { color: var(--accent); font-weight: bold; }
+
+        .close-modal {
+            margin-top: 30px;
+            color: #555;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover { color: #fff; }
+
+        /* Анімації */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        /* Футер */
+        footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #333;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-lines"></div>
+
+    <section class="hero">
+        <div class="hero-badge">Mobile Dev Environment</div>
+        <h1>ULTRA CORE</h1>
+        <p>A high-performance Android game engine architecture built for the future of mobile gaming.</p>
+        
+        <button class="btn-main" onclick="toggleModal(true)">Early Test</button>
+    </section>
+
+    <footer>
+        &copy; 2026 ULTRA CORE ENGINE | ALL RIGHTS RESERVED
+    </footer>
+
+    <!-- Modal Window -->
+    <div class="modal" id="infoModal">
+        <div class="modal-box">
+            <h2>ENGINE STATUS</h2>
+            <p>
+                This game engine from torrent for Android is developed entirely in <span class="java-text">Java</span>. 
+            </p>
+            <p>
+                In fact, this game engine <strong>cannot be downloaded</strong> at the moment, but you can follow its creation and witness the evolution of mobile tech.
+            </p>
+            <p style="font-size: 0.9rem; color: #666;">
+                > System: Encrypted<br>
+                > Language: Java Native<br>
+                > Platform: Android
+            </p>
+            <div class="close-modal" onclick="toggleModal(false)">[ Return to Main ]</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById('infoModal');
+            modal.style.display = show ? 'flex' : 'none';
+        }
+
+        // Закриття при кліку поза вікном
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('infoModal')) {
+                toggleModal(false);
+            }
+        }
+    </script>
+
+</body>
+</html>
+
